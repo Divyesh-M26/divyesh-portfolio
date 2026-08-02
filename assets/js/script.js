@@ -89,3 +89,39 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+/* ==========================
+   GALLERY LIGHTBOX
+========================== */
+
+window.addEventListener("load", function () {
+
+    const galleryImages = document.querySelectorAll(".gallery-card img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.querySelector("#lightbox .close");
+
+    if (!lightbox || !lightboxImg || !closeBtn) {
+        console.error("Lightbox HTML not found!");
+        return;
+    }
+
+    galleryImages.forEach((img) => {
+        img.addEventListener("click", () => {
+            lightbox.style.display = "flex";
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+        });
+    });
+
+    closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+    });
+
+    lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+            lightbox.style.display = "none";
+        }
+    });
+
+});
